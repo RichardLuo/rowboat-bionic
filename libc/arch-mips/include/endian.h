@@ -69,6 +69,10 @@
 #endif  /* __mips32r2__ */
 #endif  /* __GNUC__ */
 
+#ifdef __MIPSEB__
+#define __fswab16(x) __swap16md(x)
+#endif
+
 
 #include <sys/endian.h>
 

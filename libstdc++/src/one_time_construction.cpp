@@ -60,9 +60,15 @@ typedef union {
     int64_t aligner;
 } _guard_t;
 
+#if defined(__MIPSEB__)
+const static int ready     = 0x10000000;
+const static int pending   = 0x00100000;
+const static int waiting   = 0x00001000;
+#else
 const static int ready     = letoh32(0x1);
 const static int pending   = letoh32(0x100);
 const static int waiting   = letoh32(0x10000);
+#endif
 #endif
 
 extern "C" int __cxa_guard_acquire(_guard_t* gv)
